@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:app1/services/api/grpc.dart';
 import 'package:app1/widgets/map/modal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -64,7 +65,7 @@ class MapController extends GetxController {
         infoWindow: InfoWindow(title: "Se esta Creando un nuevo"),
         onTap: () {
           Get.dialog(
-            AlertCustomDialog(),
+            AlertCustomDialog(lt: lat),
             useSafeArea: true,
             barrierDismissible: true,
             barrierColor: Color(0x01000000),
@@ -87,6 +88,8 @@ class MapController extends GetxController {
   @override
   void onReady() async {
     await _checkPermiss();
+
+    ServerRemote.callLocations();
     super.onReady();
   }
 }
