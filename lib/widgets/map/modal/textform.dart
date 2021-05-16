@@ -25,9 +25,9 @@ class TextFieldCustom extends StatelessWidget {
     return Container(
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Color(0xFFE9EBEE),
-        ),
+            // borderRadius: BorderRadius.circular(20),
+            //color: Color(0xFFE9EBEE),
+            ),
         child: GetBuilder<FormController>(
           id: this.id,
           builder: (_) => TextFormField(
@@ -35,6 +35,8 @@ class TextFieldCustom extends StatelessWidget {
             keyboardType: this.typeText,
             minLines: 1,
             maxLines: 3,
+            validator: (value) =>
+                value == null || value.isEmpty ? "*******" : null,
             maxLength: this.maxle,
             style: TextStyle(
                 color: Colors.black,
@@ -44,7 +46,32 @@ class TextFieldCustom extends StatelessWidget {
                 fontWeight: FontWeight.w400),
             decoration: InputDecoration(
               counterText: "",
-              border: InputBorder.none,
+              filled: true,
+              fillColor: Color(0xFFE9EBEE),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(
+                  color: Colors.transparent,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(
+                  color: Colors.transparent,
+                ),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(
+                  color: Colors.transparent,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(
+                  color: Colors.transparent,
+                ),
+              ),
               hintText: this.hintText,
               hintStyle: TextStyle(fontSize: 13),
               contentPadding: EdgeInsets.only(top: 14.0, bottom: 10),

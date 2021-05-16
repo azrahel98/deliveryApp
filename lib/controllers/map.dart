@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:app1/services/api/grpc.dart';
-import 'package:app1/widgets/map/modal.dart';
+import 'package:app1/widgets/map/modal/modal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -89,7 +89,7 @@ class MapController extends GetxController {
   void onReady() async {
     await _checkPermiss();
 
-    ServerRemote.callLocations();
+    ServerRemote.ubicacionesAlxClien();
     super.onReady();
   }
 }
