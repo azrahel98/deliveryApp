@@ -1,3 +1,5 @@
+import 'package:app1/controllers/map.dart';
+import 'package:app1/services/api/marker.dart';
 import 'package:app1/services/lib/location.pb.dart';
 import 'package:app1/services/lib/proto.pbgrpc.dart';
 import 'package:fixnum/fixnum.dart';
@@ -16,33 +18,22 @@ class ServerRemote {
 
   static CallOptions options = CallOptions(metadata: {"token": token});
 
-  static void ubicacionesAlxClien() async {
-    var reqCliente = RequestClient(idCliente: 24);
+  static Future<void> ubicacionesAlxClien(Set<Marker>? marker) async {
+    var reqCliente = RequestClient(idCliente: 1);
     try {
-      var response = client.clientes(reqCliente, options: options);
+      var response = client.clientesLocations(reqCliente, options: options);
 
       await for (var x in response) {
-        print(x);
+        marker!.add(
+          await MarkerApp.addMaker(
+              LatLng(x.latitude, x.longitude), "Id:${x.idCliente}"),
+        );
       }
     } catch (e) {
+      print("EROOOOOOOOOOR");
       print(e);
     }
   }
-
-  // static void callLocations() async {
-  //   print("object");
-  //   var reqCliente = RequestClient(idCliente: 1);
-  //   var response = client.clientesLocations(reqCliente,
-  //       options: CallOptions(metadata: {"token": "adfadsfadsfadfssad"}));
-
-  //   try {
-  //     await for (var x in response) {
-  //       print(x);
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
 
   static Future<Cliente?> addNewClient(
       String direccion, nombre, Int64 ruc) async {
@@ -69,14 +60,14 @@ class ServerRemote {
     print(response);
   }
 
-  static Future<void> addClientWithLocation(
+  static Future<bool> addClientWithLocation(
       String nombre, direccion, obs, LatLng lt, Int64 ruc) async {
     Cliente? iscreated = await addNewClient(direccion, nombre, ruc);
     if (iscreated == null) {
-      print("ERror");
+      return false;
     } else {
-      print(iscreated.idCliente);
       addClientLocation(iscreated, lt, obs);
+      return true;
     }
   }
 }

@@ -20,6 +20,7 @@ class AlertCustomDialog extends StatelessWidget {
       buttonPadding: EdgeInsets.all(0),
       actionsPadding: EdgeInsets.zero,
       content: GetBuilder<FormController>(
+        id: 'modal',
         init: FormController(),
         builder: (_) => Align(
           alignment: Alignment.bottomCenter,
@@ -31,7 +32,14 @@ class AlertCustomDialog extends StatelessWidget {
             ),
             width: size.width,
             // height: size.height,
-            child: FormDialog(lt: lt),
+            child: (_.check != true)
+                ? FormDialog(lt: lt)
+                : Container(
+                    height: size.height / 2,
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
           ),
         ),
       ),

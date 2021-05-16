@@ -69,7 +69,7 @@ class FormDialog extends StatelessWidget {
                     hintText: "Ruc",
                     icon: Icons.note_outlined,
                     typeText: TextInputType.number,
-                    maxle: 12,
+                    maxle: 11,
                     id: 'ruc',
                     editc: _.ruc,
                   ),

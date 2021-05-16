@@ -12,9 +12,9 @@ class MapController extends GetxController {
   GoogleMapController? _mapController;
   GoogleMapController? get mcontroller => _mapController;
   Location _location = Location();
+  CameraPosition cameraPosition = CameraPosition(target: LatLng(12.45, 15.64));
 
   Set<Marker> marker = {};
-  Timer? _timer;
 
   Future<void> onCreateMap(GoogleMapController controller) async {
     var isComplete = _controller.isCompleted;
@@ -39,7 +39,7 @@ class MapController extends GetxController {
   }
 
   _updateInitLocation() {
-    _timer = Timer.periodic(
+    Timer.periodic(
       Duration(
         seconds: 2,
       ),
@@ -47,6 +47,9 @@ class MapController extends GetxController {
         bool enable = await _location.serviceEnabled();
         if (enable) {
           LocationData location = await _location.getLocation();
+          cameraPosition = CameraPosition(
+              target: LatLng(location.latitude!, location.longitude!),
+              zoom: 14);
           _mapController?.animateCamera(CameraUpdate.newLatLngZoom(
               LatLng(location.latitude!, location.longitude!), 15));
           timer.cancel();
@@ -80,16 +83,17 @@ class MapController extends GetxController {
   }
 
   @override
-  void onInit() {
-    super.onInit();
+  void onInit() async {
+    await ServerRemote.ubicacionesAlxClien(marker);
+    update();
     _updateInitLocation();
+    super.onInit();
   }
 
   @override
   void onReady() async {
     await _checkPermiss();
 
-    ServerRemote.ubicacionesAlxClien();
     super.onReady();
   }
 }

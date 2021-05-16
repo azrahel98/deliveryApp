@@ -28,6 +28,6 @@ class AppBindings extends Bindings {
   void dependencies() {
     Get.lazyPut<GlobalTools>(() => GlobalTools());
     Get.lazyPut<LoadingController>(() => LoadingController(), fenix: false);
-    Get.lazyPut<MapController>(() => MapController(), fenix: true);
+    Get.put(MapController(), permanent: true);
   }
 }

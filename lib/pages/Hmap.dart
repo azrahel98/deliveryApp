@@ -12,9 +12,7 @@ class MapPage extends StatelessWidget {
       body: GetBuilder<MapController>(
         builder: (MapController _) {
           return GoogleMap(
-            initialCameraPosition: CameraPosition(
-              target: LatLng(12.45, 15.64),
-            ),
+            initialCameraPosition: _.cameraPosition,
             onMapCreated: _.onCreateMap,
             zoomControlsEnabled: false,
             myLocationButtonEnabled: false,
