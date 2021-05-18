@@ -6,7 +6,7 @@ class DayTheme {
     fontFamily: GoogleFonts.montserrat(letterSpacing: 2).fontFamily,
     textTheme: TextTheme(
       bodyText1: TextStyle(
-        color: Colors.red,
+        color: Colors.black,
       ),
       bodyText2: TextStyle(
         color: Colors.red,

@@ -60,16 +60,17 @@ class MapController extends GetxController {
 
   ///
   addnewMarker(LatLng lat) {
-    print(lat);
     Marker mark = Marker(
         markerId: MarkerId("nuevo"),
         position: lat,
         icon: BitmapDescriptor.defaultMarkerWithHue(2),
-        infoWindow: InfoWindow(title: "Se esta Creando un nuevo"),
+        infoWindow: InfoWindow(title: "Nuevo Cliente ?"),
         onTap: () {
           Get.dialog(
             AlertCustomDialog(lt: lat),
-            useSafeArea: true,
+            useSafeArea: false,
+            transitionDuration: Duration(seconds: 1),
+            transitionCurve: Curves.easeInOutSine,
             barrierDismissible: true,
             barrierColor: Color(0x01000000),
           );
@@ -78,6 +79,7 @@ class MapController extends GetxController {
   }
 
   onlongTap(LatLng lat) {
+    marker.removeWhere((element) => element.markerId.value == "nuevo");
     addnewMarker(lat);
     update();
   }

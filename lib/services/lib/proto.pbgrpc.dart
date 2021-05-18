@@ -114,10 +114,11 @@ class DeliveryAppLocationClient extends $grpc.Client {
           ($1.RequestAddLocation value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $1.Almacen.fromBuffer(value));
   static final _$clientesLocations =
-      $grpc.ClientMethod<$1.RequestClient, $1.Almacen>(
+      $grpc.ClientMethod<$1.RequestClient, $1.ResponseAlmacen>(
           '/deliverypro.DeliveryAppLocation/ClientesLocations',
           ($1.RequestClient value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Almacen.fromBuffer(value));
+          ($core.List<$core.int> value) =>
+              $1.ResponseAlmacen.fromBuffer(value));
 
   DeliveryAppLocationClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -141,7 +142,8 @@ class DeliveryAppLocationClient extends $grpc.Client {
     return $createUnaryCall(_$addAlmacen, request, options: options);
   }
 
-  $grpc.ResponseStream<$1.Almacen> clientesLocations($1.RequestClient request,
+  $grpc.ResponseStream<$1.ResponseAlmacen> clientesLocations(
+      $1.RequestClient request,
       {$grpc.CallOptions? options}) {
     return $createStreamingCall(
         _$clientesLocations, $async.Stream.fromIterable([request]),
@@ -176,13 +178,13 @@ abstract class DeliveryAppLocationServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $1.RequestAddLocation.fromBuffer(value),
         ($1.Almacen value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.RequestClient, $1.Almacen>(
+    $addMethod($grpc.ServiceMethod<$1.RequestClient, $1.ResponseAlmacen>(
         'ClientesLocations',
         clientesLocations_Pre,
         false,
         true,
         ($core.List<$core.int> value) => $1.RequestClient.fromBuffer(value),
-        ($1.Almacen value) => value.writeToBuffer()));
+        ($1.ResponseAlmacen value) => value.writeToBuffer()));
   }
 
   $async.Future<$1.Cliente> createClient_Pre($grpc.ServiceCall call,
@@ -200,7 +202,7 @@ abstract class DeliveryAppLocationServiceBase extends $grpc.Service {
     return addAlmacen(call, await request);
   }
 
-  $async.Stream<$1.Almacen> clientesLocations_Pre(
+  $async.Stream<$1.ResponseAlmacen> clientesLocations_Pre(
       $grpc.ServiceCall call, $async.Future<$1.RequestClient> request) async* {
     yield* clientesLocations(call, await request);
   }
@@ -211,6 +213,6 @@ abstract class DeliveryAppLocationServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $1.RequestClient request);
   $async.Future<$1.Almacen> addAlmacen(
       $grpc.ServiceCall call, $1.RequestAddLocation request);
-  $async.Stream<$1.Almacen> clientesLocations(
+  $async.Stream<$1.ResponseAlmacen> clientesLocations(
       $grpc.ServiceCall call, $1.RequestClient request);
 }

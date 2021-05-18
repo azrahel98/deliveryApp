@@ -19,6 +19,7 @@ class MapPage extends StatelessWidget {
             trafficEnabled: false,
             myLocationEnabled: true,
             markers: _.marker,
+            mapToolbarEnabled: false,
             onLongPress: _.onlongTap,
           );
         },

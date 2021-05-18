@@ -347,6 +347,95 @@ class Almacen extends $pb.GeneratedMessage {
   void clearIdCliente() => clearField(6);
 }
 
+class ResponseAlmacen extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ResponseAlmacen', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'deliverypro.location'), createEmptyInstance: create)
+    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'idAlmacen', $pb.PbFieldType.O3)
+    ..a<$core.double>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'latitude', $pb.PbFieldType.OD)
+    ..a<$core.double>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'longitude', $pb.PbFieldType.OD)
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nombre')
+    ..hasRequiredFields = false
+  ;
+
+  ResponseAlmacen._() : super();
+  factory ResponseAlmacen({
+    $core.int? idAlmacen,
+    $core.double? latitude,
+    $core.double? longitude,
+    $core.String? nombre,
+  }) {
+    final _result = create();
+    if (idAlmacen != null) {
+      _result.idAlmacen = idAlmacen;
+    }
+    if (latitude != null) {
+      _result.latitude = latitude;
+    }
+    if (longitude != null) {
+      _result.longitude = longitude;
+    }
+    if (nombre != null) {
+      _result.nombre = nombre;
+    }
+    return _result;
+  }
+  factory ResponseAlmacen.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ResponseAlmacen.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ResponseAlmacen clone() => ResponseAlmacen()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ResponseAlmacen copyWith(void Function(ResponseAlmacen) updates) => super.copyWith((message) => updates(message as ResponseAlmacen)) as ResponseAlmacen; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static ResponseAlmacen create() => ResponseAlmacen._();
+  ResponseAlmacen createEmptyInstance() => create();
+  static $pb.PbList<ResponseAlmacen> createRepeated() => $pb.PbList<ResponseAlmacen>();
+  @$core.pragma('dart2js:noInline')
+  static ResponseAlmacen getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ResponseAlmacen>(create);
+  static ResponseAlmacen? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get idAlmacen => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set idAlmacen($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasIdAlmacen() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearIdAlmacen() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.double get latitude => $_getN(1);
+  @$pb.TagNumber(2)
+  set latitude($core.double v) { $_setDouble(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasLatitude() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearLatitude() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.double get longitude => $_getN(2);
+  @$pb.TagNumber(3)
+  set longitude($core.double v) { $_setDouble(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasLongitude() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearLongitude() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get nombre => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set nombre($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasNombre() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearNombre() => clearField(4);
+}
+
 class RequestClient extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RequestClient', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'deliverypro.location'), createEmptyInstance: create)
     ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'idCliente', $pb.PbFieldType.O3)

@@ -1,4 +1,3 @@
-import 'package:app1/controllers/map.dart';
 import 'package:app1/services/api/marker.dart';
 import 'package:app1/services/lib/location.pb.dart';
 import 'package:app1/services/lib/proto.pbgrpc.dart';
@@ -25,12 +24,10 @@ class ServerRemote {
 
       await for (var x in response) {
         marker!.add(
-          await MarkerApp.addMaker(
-              LatLng(x.latitude, x.longitude), "Id:${x.idCliente}"),
+          await MarkerApp.addMaker(LatLng(x.latitude, x.longitude), x.nombre),
         );
       }
     } catch (e) {
-      print("EROOOOOOOOOOR");
       print(e);
     }
   }

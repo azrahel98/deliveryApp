@@ -34,7 +34,6 @@ dependencies:
   google_maps_flutter: ^2.0.3
   lottie:
   permission_handler:
-  android_intent:
   location:
   grpc:
   fixnum:

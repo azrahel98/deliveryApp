@@ -52,6 +52,19 @@ const Almacen$json = const {
 
 /// Descriptor for `Almacen`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List almacenDescriptor = $convert.base64Decode('CgdBbG1hY2VuEh0KCmlkX2FsbWFjZW4YASABKAVSCWlkQWxtYWNlbhIaCghsYXRpdHVkZRgCIAEoAVIIbGF0aXR1ZGUSHAoJbG9uZ2l0dWRlGAMgASgBUglsb25naXR1ZGUSHAoJZGlyZWNjaW9uGAQgASgJUglkaXJlY2Npb24SJAoNb2JzZXJ2YWNpb25lcxgFIAEoCVINb2JzZXJ2YWNpb25lcxIdCgppZF9jbGllbnRlGAYgASgFUglpZENsaWVudGU=');
+@$core.Deprecated('Use responseAlmacenDescriptor instead')
+const ResponseAlmacen$json = const {
+  '1': 'ResponseAlmacen',
+  '2': const [
+    const {'1': 'id_almacen', '3': 1, '4': 1, '5': 5, '10': 'idAlmacen'},
+    const {'1': 'latitude', '3': 2, '4': 1, '5': 1, '10': 'latitude'},
+    const {'1': 'longitude', '3': 3, '4': 1, '5': 1, '10': 'longitude'},
+    const {'1': 'nombre', '3': 4, '4': 1, '5': 9, '10': 'nombre'},
+  ],
+};
+
+/// Descriptor for `ResponseAlmacen`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List responseAlmacenDescriptor = $convert.base64Decode('Cg9SZXNwb25zZUFsbWFjZW4SHQoKaWRfYWxtYWNlbhgBIAEoBVIJaWRBbG1hY2VuEhoKCGxhdGl0dWRlGAIgASgBUghsYXRpdHVkZRIcCglsb25naXR1ZGUYAyABKAFSCWxvbmdpdHVkZRIWCgZub21icmUYBCABKAlSBm5vbWJyZQ==');
 @$core.Deprecated('Use requestClientDescriptor instead')
 const RequestClient$json = const {
   '1': 'RequestClient',

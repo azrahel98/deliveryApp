@@ -7,9 +7,8 @@ class Gomepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
       body: Center(
-        child: CustomMakerPaint(),
+        child: Text("Admin Page"),
       ),
     );
   }
