@@ -25,8 +25,8 @@ class HomePage extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: CurvedNavigationBar(
                   items: [
-                    MenuButton(icon: CupertinoIcons.location),
-                    MenuButton(icon: Icons.crop_outlined),
+                    MenuButton(icon: CupertinoIcons.location_circle_fill),
+                    MenuButton(icon: Icons.view_list_rounded),
                   ],
                   index: _.tabindex,
                   onTap: _.changeTab,

@@ -1,5 +1,3 @@
-import 'package:app1/widgets/map/marker/customMarker.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

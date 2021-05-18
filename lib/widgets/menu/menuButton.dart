@@ -9,6 +9,7 @@ class MenuButton extends StatelessWidget {
       icon: Icon(
         icon,
         color: Color(0xFF2E50E7),
+        size: 30,
       ),
       onPressed: null,
     );

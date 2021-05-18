@@ -8,18 +8,33 @@ class LoadingController extends GetxController {
   bool isloading = false;
 
   Future<void> _checkPermiss() async {
-    Future.delayed(Duration(seconds: 3));
     var status = await Permission.location.status;
     if (status.isGranted) {
       isloading = true;
       Get.offAndToNamed(AppRoutes.HomePage);
     }
-    var rst = await Permission.location.request();
+  }
 
-    if (rst.isPermanentlyDenied) {
-      await openAppSettings();
-      update();
-    }
+  checkPermiss() {
+    Timer.periodic(
+      Duration(
+        seconds: 2,
+      ),
+      (timer) async {
+        print("Checando permisos");
+        var status = await Permission.location.status;
+        if (status.isGranted || status.isLimited) {
+          Get.offAndToNamed(AppRoutes.HomePage);
+          timer.cancel();
+        }
+      },
+    );
+  }
+
+  @override
+  void onInit() {
+    checkPermiss();
+    super.onInit();
   }
 
   @override

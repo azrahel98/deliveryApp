@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:app1/services/api/grpc.dart';
 import 'package:app1/widgets/map/modal/modal.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -9,6 +10,7 @@ import 'package:location/location.dart';
 class MapController extends GetxController {
   Completer<GoogleMapController> _controller = Completer.sync();
 
+  bool locenable = false;
   GoogleMapController? _mapController;
   GoogleMapController? get mcontroller => _mapController;
   Location _location = Location();
@@ -22,20 +24,15 @@ class MapController extends GetxController {
       _controller.complete(controller);
     }
     _mapController = controller;
+    await _checkPermiss();
+    final style =
+        await rootBundle.loadString("assets/stylemaps/uberligth.json");
+    _mapController?.setMapStyle(style);
   }
 
   _checkPermiss() async {
     bool enabl = await _location.serviceEnabled();
-    if (!enabl) {
-      Get.snackbar(
-        "GPS DESHABILITADO", // title
-        "Activa el Gps para poder Acceder atu Ubicacion", // message
-        icon: Icon(Icons.location_disabled_sharp),
-        backgroundColor: Colors.red,
-        isDismissible: false,
-        snackStyle: SnackStyle.FLOATING,
-      );
-    }
+    locenable = enabl;
   }
 
   _updateInitLocation() {
@@ -50,8 +47,10 @@ class MapController extends GetxController {
           cameraPosition = CameraPosition(
               target: LatLng(location.latitude!, location.longitude!),
               zoom: 14);
-          _mapController?.animateCamera(CameraUpdate.newLatLngZoom(
+          await _mapController?.animateCamera(CameraUpdate.newLatLngZoom(
               LatLng(location.latitude!, location.longitude!), 15));
+          locenable = true;
+          update();
           timer.cancel();
         }
       },
@@ -88,14 +87,8 @@ class MapController extends GetxController {
   void onInit() async {
     await ServerRemote.ubicacionesAlxClien(marker);
     update();
+
     _updateInitLocation();
     super.onInit();
-  }
-
-  @override
-  void onReady() async {
-    await _checkPermiss();
-
-    super.onReady();
   }
 }
