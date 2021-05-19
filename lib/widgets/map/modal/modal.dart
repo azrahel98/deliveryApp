@@ -1,9 +1,10 @@
-import 'package:app1/widgets/map/control/form.dart';
 import 'package:app1/widgets/map/form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import 'control/form.dart';
 
 class AlertCustomDialog extends StatelessWidget {
   final LatLng lt;

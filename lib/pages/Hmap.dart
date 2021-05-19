@@ -1,6 +1,7 @@
-import 'dart:ui';
-
 import 'package:app1/controllers/map.dart';
+import 'package:app1/widgets/map/controls/location.dart';
+import 'package:app1/widgets/map/controls/searchbar.dart';
+import 'package:app1/widgets/map/controls/tools.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +13,6 @@ class MapPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      restorationId: "hola==================================",
       body: GetBuilder<MapController>(
         builder: (MapController _) {
           return Stack(
@@ -28,35 +28,53 @@ class MapPage extends StatelessWidget {
                 mapToolbarEnabled: false,
                 onLongPress: _.onlongTap,
               ),
+              // Obx(
+              //   () => (_.search == true)
+              //       ? Positioned(
+              //           child: SafeArea(
+              //             child: Align(
+              //               alignment: Alignment.topLeft,
+              //               child: Padding(
+              //                 padding: EdgeInsets.only(
+              //                     top: size.height / 20,
+              //                     right: size.width / 5,
+              //                     left: size.width / 28),
+              //                 child: SearchBar(),
+              //               ),
+              //             ),
+              //             top: true,
+              //           ),
+              //         )
+              //       : SizedBox(),
+              // ),
               Positioned(
-                left: size.width / 1.19,
-                top: size.height / 15,
-                child: _.locenable != true
-                    ? Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            tileMode: TileMode.mirror,
-                            colors: [
-                              Colors.redAccent,
-                              Colors.white,
-                            ],
+                child: SafeArea(
+                  top: true,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding:
+                          EdgeInsets.only(right: 20, top: size.height / 25),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          (_.locenable == false) ? LocationInMap() : SizedBox(),
+                          Obx(
+                            () => SearchBar(
+                                search: _.search,
+                                size: size,
+                                onpress: () => _.search = !_.search),
                           ),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.red,
-                                blurRadius: 6,
-                                spreadRadius: 0),
-                          ],
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Icon(
-                          Icons.location_off_rounded,
-                          size: 35,
-                          color: Color(0xFFD00D0B),
-                        ),
-                      )
-                    : Container(),
+                          ToolsInMap(
+                              onpress: _.centerCamera,
+                              icon: Icons.center_focus_weak),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               )
             ],
           );

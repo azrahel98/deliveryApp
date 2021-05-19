@@ -11,12 +11,26 @@ class MapController extends GetxController {
   Completer<GoogleMapController> _controller = Completer.sync();
 
   bool locenable = false;
+  RxBool _search = false.obs;
+  bool get search => _search.value;
+  set search(bool s) => _search.value = s;
+
   GoogleMapController? _mapController;
   GoogleMapController? get mcontroller => _mapController;
   Location _location = Location();
   CameraPosition cameraPosition = CameraPosition(target: LatLng(12.45, 15.64));
 
   Set<Marker> marker = {};
+
+//controlls//
+  centerCamera() async {
+    LocationData lat = await _location.getLocation();
+    _mapController?.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(lat.latitude!, lat.longitude!), zoom: 15),
+      ),
+    );
+  }
 
   Future<void> onCreateMap(GoogleMapController controller) async {
     var isComplete = _controller.isCompleted;

@@ -1,8 +1,8 @@
-import 'package:app1/widgets/map/control/form.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'modal/control/form.dart';
 import 'modal/modalButton.dart';
 import 'modal/textform.dart';
 
